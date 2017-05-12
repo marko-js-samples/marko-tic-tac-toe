@@ -1,6 +1,6 @@
 {
   "name": "marko-tic-tac-toe",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Marko Tic-Tac-Toe Example",
   "repository": {
     "type": "git",
@@ -18,6 +18,5 @@
   "scripts": {
     "start": "marko-starter server",
     "build": "marko-starter build"
-  },
-  "private": true
+  }
 }
