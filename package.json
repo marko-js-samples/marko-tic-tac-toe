@@ -1,7 +1,7 @@
 {
   "name": "marko-tic-tac-toe",
   "version": "0.0.1",
-  "description": "Marko Tic-Tac-Toe Example",
+  "description": "Tic-Tac-Toe",
   "repository": {
     "type": "git",
     "url": "https://github.com/marko-js-samples/marko-tic-tac-toe"
