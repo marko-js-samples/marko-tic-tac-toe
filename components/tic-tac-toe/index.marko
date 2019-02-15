@@ -1,4 +1,4 @@
-import TicTacToe from './TicTacToe';
+import TicTacToe from "./TicTacToe";
 
 class {
   onCreate() {
@@ -6,16 +6,16 @@ class {
   }
 
   onMount() {
-    this.ticTacToe.on('change', () => {
+    this.ticTacToe.on("change", () => {
       this.forceUpdate();
     });
   }
 
   handleCellClick(rowIndex, colIndex) {
-    if (this.ticTacToe.makeMove('X', rowIndex, colIndex)) {
+    if (this.ticTacToe.makeMove("X", rowIndex, colIndex)) {
       if (!this.ticTacToe.isGameOver) {
         setTimeout(() => {
-          this.ticTacToe.computerMakeMove('O');
+          this.ticTacToe.computerMakeMove("O");
         }, 1000);
       }
     }
@@ -26,13 +26,14 @@ class {
   }
 }
 
-$ var ticTacToe = component.ticTacToe;
-$ var board = ticTacToe.board;
-$ var currentPlayer = ticTacToe.currentPlayer
-$ var isGameOver = ticTacToe.isGameOver;
-$ var winningPlayer = ticTacToe.winningPlayer;
+$ const {
+  board,
+  currentPlayer,
+  isGameOver,
+  winningPlayer
+} = component.ticTacToe;
 
-<macro player-icon(className, player)>
+<macro|{ className, player }| name="player-icon">
   <div.player-icon class=[className, player]>
     <span/>
   </div>
@@ -41,24 +42,32 @@ $ var winningPlayer = ticTacToe.winningPlayer;
 <div.tic-tac-toe>
   <div.current-player class=currentPlayer>
     <if(!isGameOver)>
-      <player-icon(['current-player', currentPlayer === 'X' && 'active'], 'X')/>
-      <player-icon(['current-player', currentPlayer === 'O' && 'active'], 'O')/>
+      <player-icon
+        className=["current-player", currentPlayer === "X" && "active"]
+        player="X"/>
+
+      <player-icon
+        className=["current-player", currentPlayer === "O" && "active"]
+        player="O"/>
     </if>
   </div>
+
   <div.board-container>
-    <for(rowIndex,row in board)>
+    <for|rowIndex, row| in=board>
       <div.row>
-        <for(colIndex,player in row)>
-          <div.cell class=["row-${rowIndex}", "col-${colIndex}"]
+        <for|colIndex, player| in=row>
+          <div.cell
+            class=[`row-${rowIndex}`, `col-${colIndex}`]
             on-click("handleCellClick", rowIndex, colIndex)>
-            <player-icon('cell', player)/>
+            <player-icon className="cell" player=player/>
           </div>
         </for>
       </div>
     </for>
-    <div.overlay class=[isGameOver && 'game-over']>
+
+    <div.overlay class=[isGameOver && "game-over"]>
       <if(winningPlayer)>
-        <player-icon('winner', winningPlayer)/>
+        <player-icon className="winner" player=winningPlayer/>
         <h2.winner>WINNER!</h2>
       </if>
       <else>
@@ -66,7 +75,8 @@ $ var winningPlayer = ticTacToe.winningPlayer;
       </else>
     </div>
   </div>
-  <button.new-game type="button" on-click('newGame')>
+
+  <button.new-game type="button" on-click("newGame")>
     New Game
   </button>
 </div>

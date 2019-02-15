@@ -1,9 +1,9 @@
 'use strict';
 
-var EventEmitter = require('events');
+const EventEmitter = require('events');
 
 function getRandomInt(max) {
-  var min = 0;
+  const min = 0;
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -31,7 +31,7 @@ class TicTacToe extends EventEmitter {
   }
 
   makeMove(player, row, col) {
-    var currentPlayer = this.state.currentPlayer;
+    const currentPlayer = this.state.currentPlayer;
 
     if (this.isGameOver) {
       // Don't allow any moves if the game is over
@@ -50,7 +50,7 @@ class TicTacToe extends EventEmitter {
 
     this.board[row][col] = currentPlayer;
 
-    var isWinner = this.checkWinner();
+    const isWinner = this.checkWinner();
 
     this.state.moveCount++;
 
@@ -69,11 +69,11 @@ class TicTacToe extends EventEmitter {
   }
 
   computerMakeMove(player) {
-    var emptyCells = [];
+    const emptyCells = [];
 
-    for (var row = 0; row < 3; row++) {
-      for (var col = 0; col < 3; col++) {
-        var cell = this.board[row][col];
+    for (let row = 0; row < 3; row++) {
+      for (let col = 0; col < 3; col++) {
+        const cell = this.board[row][col];
         if (!cell) {
           emptyCells.push({
             row,
@@ -83,12 +83,12 @@ class TicTacToe extends EventEmitter {
       }
     }
 
-    var choice = emptyCells[getRandomInt(emptyCells.length)];
+    const choice = emptyCells[getRandomInt(emptyCells.length)];
     this.makeMove(player, choice.row, choice.col);
   }
 
   checkLine(row, col, rowDelta, colDelta) {
-    var player = this.currentPlayer;
+    const player = this.currentPlayer;
     let board = this.board;
 
     for (let i = 0; i < 3; i++) {
@@ -104,14 +104,14 @@ class TicTacToe extends EventEmitter {
 
   checkWinner() {
     // Check the rows
-    for (var row = 0; row < 3; row++) {
+    for (let row = 0; row < 3; row++) {
       if (this.checkLine(row, 0, 0, 1)) {
         return true;
       }
     }
 
     // Check the columns
-    for (var col = 0; col < 3; col++) {
+    for (let col = 0; col < 3; col++) {
       if (this.checkLine(0, col, 1, 0)) {
         return true;
       }
@@ -138,7 +138,7 @@ class TicTacToe extends EventEmitter {
   }
 
   toString() {
-    var lines = [];
+    const lines = [];
     this.board.forEach((row) => {
       lines.push(row.map((player) => {
         return player ? player : ' ';
